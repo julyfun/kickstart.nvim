@@ -167,6 +167,28 @@ vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next [D]iagn
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Show diagnostic [E]rror messages' })
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 
+-- quick line jump
+vim.keymap.set('n', ';', '5gj')
+vim.keymap.set('n', ',', '5gk')
+-- Use vim.keymap.set for a more ergonomic approach
+local set = vim.keymap.set
+local opts = { noremap = true, silent = true }
+
+-- Normal and Visual mode mappings to delete without yanking
+set('n', 'd', '"_d', opts)
+set('v', 'd', '"_d', opts)
+set('n', 'D', '"_D', opts)
+set('v', 'D', '"_D', opts)
+
+-- Normal and Visual mode mappings to change without yanking
+set('n', 'c', '"_c', opts)
+set('v', 'c', '"_c', opts)
+set('n', 'C', '"_C', opts)
+set('v', 'C', '"_C', opts)
+
+-- Visual mode mapping to paste and reselect the pasted text
+set('x', 'p', 'pgvy', opts)
+
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
 -- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
 -- is not what someone will guess without a bit more experience.
